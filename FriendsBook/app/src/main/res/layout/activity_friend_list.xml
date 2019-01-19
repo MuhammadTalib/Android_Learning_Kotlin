@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FriendList">
+
+   <fragment
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="60dp"
+       android:name="com.example.muhammadtalib.friendsbook.Toolbar"
+       />
+    <TextView
+
+        android:padding="10dp"
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Friend List"
+        android:textColor="@color/blueColour"
+        android:background="#145a81"
+        android:textSize="25dp"
+        android:textStyle="bold"
+            android:layout_below="@+id/toolbar"
+        />
+    <android.support.v7.widget.RecyclerView
+
+        android:id="@+id/FriendListRecycler"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/header"
+        android:layout_height="450dp">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+ <ImageView
+     android:layout_alignBottom="@+id/FriendListRecycler"
+     android:layout_alignParentRight="true"
+     android:layout_marginBottom="70dp"
+     android:id="@+id/add"
+     android:layout_above="@+id/texthome"
+     android:layout_width="70dp"
+     android:layout_height="70dp"
+     android:src="@drawable/ic_add"
+     android:onClick="addFriends"/>
+
+
+
+    <ImageView
+        android:id="@+id/home"
+        android:layout_above="@+id/texthome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home"
+        android:onClick="home"
+        />
+    <ImageView
+
+        android:id="@+id/friend"
+        android:layout_above="@+id/textfriends"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/friends"
+        android:onClick="friends"
+        />
+    <ImageView
+
+        android:id="@+id/profile"
+        android:layout_above="@+id/textprofile"
+        android:layout_alignParentEnd="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_person"
+        android:onClick="profile"
+        />
+    <TextView
+        android:id="@+id/texthome"
+        android:paddingLeft="10dp"
+        style="@style/imagetext"
+        android:layout_alignParentBottom="true"
+        android:text="Home"/>
+    <TextView
+        android:id="@+id/textfriends"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        style="@style/imagetext"
+        android:text="Friends"
+        />
+    <TextView
+
+        android:paddingRight="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/textprofile"
+        android:text="Profile"
+        style="@style/imagetext" />
+
+</RelativeLayout>

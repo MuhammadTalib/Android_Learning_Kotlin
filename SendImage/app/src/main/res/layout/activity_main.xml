@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        />
+
+    <Button
+        android:id="@+id/share_drawable_button"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Share Image From Drawable"
+        android:textSize="20dp"
+        android:textColor="#030303"
+        android:background="#5916a6"/>
+    <Button
+        android:id="@+id/share_button"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Share Image From Gallery"
+        android:textSize="20dp"
+        android:textColor="#030303"
+        android:background="#5916a6"/>
+
+
+</LinearLayout>

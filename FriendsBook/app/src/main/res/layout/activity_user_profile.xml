@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e45384f5"
+    android:orientation="vertical"
+    tools:context=".UserProfile">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_marginTop="70dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/userpp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+
+        android:id="@+id/textprofilee"
+        style="@style/imagetext"
+        android:layout_below="@+id/image"
+        android:text="Talib Waseem"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:editable="true"
+        android:layout_centerHorizontal="true"
+        />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/edit"
+        android:layout_toEndOf="@+id/textprofilee"
+        android:layout_below="@+id/image"
+        />
+    <RelativeLayout
+       android:id="@+id/relations"
+        android:layout_width="match_parent"
+        android:background="#FFF"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/textprofilee">
+        <TextView
+            android:id="@+id/followers"
+            android:layout_marginLeft="30dp"
+           android:layout_marginTop="20dp"
+            android:text="    100"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/followers"
+            android:text="Followers"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/firends"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="   200"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:layout_below="@+id/firends"
+            android:layout_centerHorizontal="true"
+            android:text="Friends"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/following"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentEnd="true"
+            android:text="    350"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:layout_below="@+id/following"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:text="Friends"
+            style="@style/imagetext"
+            android:textSize="20dp"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="#FFF"
+        android:layout_height="280dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:layout_below="@+id/relations">
+
+        <TextView
+            style="@style/imagetext"
+            android:text="Email:"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"/>
+        <TextView
+            android:id="@+id/emaildestination"
+            style="@style/imagetext"
+            android:paddingLeft="20dp"
+            android:textColor="#000"
+            android:text="Email:talibwaseem135@gmail.com"
+            android:textSize="20dp"
+            />
+        <TextView
+            style="@style/imagetext"
+            android:text="Mobile"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"/>
+        <TextView
+            style="@style/imagetext"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Mobile:03232452884"
+            android:paddingLeft="20dp"/>
+        <TextView
+            style="@style/imagetext"
+            android:text="Birthday:"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"/>
+        <TextView
+            style="@style/imagetext"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Birthday:28-February-1998"
+            android:paddingLeft="20dp"/>
+        <TextView
+            style="@style/imagetext"
+            android:text="Gender"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"/>
+        <TextView
+            style="@style/imagetext"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:text="Gender:Male"
+            android:paddingLeft="20dp"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
