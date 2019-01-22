@@ -7,7 +7,7 @@ data class contactdetails(
 
 
         @ColumnInfo var Contact_Name:String="",
-        @PrimaryKey(autoGenerate = true) var	Contact_Number:String="",
+        @PrimaryKey(autoGenerate = true) var Contact_Number:Int=0,
         @ColumnInfo var Contact_Type:String=" Mobile, Home, Work",
         @Embedded(prefix = "address_") var	Address:Addressdetails= Addressdetails("","","","","","")
 

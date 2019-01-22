@@ -1,7 +1,7 @@
 package com.example.administrator.a20_jan_task
 
 
-class Addressdetails(
+data class Addressdetails(
 
     var type:String,
     var	House_No:String,
