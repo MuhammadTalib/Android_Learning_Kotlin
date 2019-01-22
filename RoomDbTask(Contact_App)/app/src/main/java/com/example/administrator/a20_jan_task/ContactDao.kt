@@ -6,7 +6,7 @@ import android.arch.persistence.room.Query
 import android.arch.persistence.room.Update
 
 @Dao
-interface ContactdetailsDao {
+interface ContactsDao {
 
     @Query("SELECT * FROM contactdetails WHERE Contact_Number = :id")
     fun getById(id:Int):contactdetails

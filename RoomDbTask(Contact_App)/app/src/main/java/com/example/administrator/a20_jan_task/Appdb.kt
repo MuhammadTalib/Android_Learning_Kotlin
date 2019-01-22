@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters
 
 @Database(entities = [contactdetails::class],version = 2)
 @TypeConverters(MyTypeConverter::class)
-abstract class AppDb : RoomDatabase(){
-    abstract fun postsDao():ContactdetailsDao
+abstract class AppDb : RoomDatabase()
+{
+    abstract fun ContactsDao():ContactsDao
 }

@@ -11,7 +11,6 @@ class MainActivity : AppCompatActivity() {
         var ContactData = ArrayList<contactdetails>()
     }
     lateinit var db: AppDb
-    var updateId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +19,10 @@ class MainActivity : AppCompatActivity() {
         done.setOnClickListener{
             var Contact:contactdetails= contactdetails()
             Contact.Contact_Name=Name.text.toString()
+            Contact.Contact_Number=Number.text.toString()
+            Contact.Address=Addressdetails("Home",House_No.text.toString(),Street.text.toString(),City.text.toString(),Country.text.toString(),Email.text.toString())
 
-                save(Contact)
+            save(Contact)
 
             }
 
@@ -39,16 +40,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateList(){
         ContactData.clear()
-        ContactData.addAll(db.postsDao().getAll())
+        ContactData.addAll(db.ContactsDao().getAll())
     }
 
     private fun save(text:contactdetails){
-        if(updateId == 0){
-            db.postsDao().insert(contactdetails(text.Contact_Name,text.Contact_Number,text.Contact_Type,text.Address))
-        }else{
-            db.postsDao().update(contactdetails(text.Contact_Name,text.Contact_Number,text.Contact_Type,text.Address))
-        }
-        updateId = 0
+
+        db.ContactsDao().insert(contactdetails(text.Contact_Name,text.Contact_Number,text.Contact_Type,text.Address))
         updateList()
     }
 }

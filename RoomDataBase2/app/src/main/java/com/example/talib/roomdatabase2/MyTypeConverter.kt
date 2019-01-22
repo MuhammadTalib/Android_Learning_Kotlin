@@ -21,7 +21,7 @@ class MyTypeConverter{
         return gson.fromJson(value,Array<String>::class.java)
     }
 
-    /*@TypeConverter
+    /*\\@TypeConverter
     fun bitmapToStr(value: Bitmap):String{
         val byteArrayOutputStream = ByteArrayOutputStream()
         value.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
