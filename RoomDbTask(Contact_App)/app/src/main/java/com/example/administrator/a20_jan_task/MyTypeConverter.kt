@@ -3,6 +3,7 @@ import android.arch.persistence.room.TypeConverter
 import android.graphics.Bitmap
 import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class MyTypeConverter{
 
@@ -17,8 +18,8 @@ class MyTypeConverter{
         val gson = Gson()
         return gson.fromJson(value,Array<String>::class.java)
     }
-
-   /* @TypeConverter
+/*
+    @TypeConverter
     fun bitmapToStr(value: Bitmap):String{
         val byteArrayOutputStream = ByteArrayOutputStream()
         value.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)

@@ -1,7 +1,7 @@
 package com.example.administrator.a20_jan_task
 
 
-data class Addressdetails(
+class Addressdetails(
 
     var type:String,
     var	House_No:String,
@@ -10,4 +10,6 @@ data class Addressdetails(
     var	Country:String,
     var	Email:String
 
-)
+){
+    constructor():this("","","","","",""){}
+}

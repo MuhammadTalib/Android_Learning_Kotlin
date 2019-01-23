@@ -1,9 +1,6 @@
 package com.example.administrator.a20_jan_task
 
-import android.arch.persistence.room.Dao
-import android.arch.persistence.room.Insert
-import android.arch.persistence.room.Query
-import android.arch.persistence.room.Update
+import android.arch.persistence.room.*
 
 @Dao
 interface ContactdetailsDao {
@@ -19,5 +16,8 @@ interface ContactdetailsDao {
 
     @Update
     fun update(post: contactdetails)
+
+    @Delete
+    fun delete(post:List<contactdetails>)
 
 }
