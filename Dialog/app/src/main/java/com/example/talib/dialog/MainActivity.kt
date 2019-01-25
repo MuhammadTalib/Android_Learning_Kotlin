@@ -16,9 +16,6 @@ class MainActivity : AppCompatActivity() {
             dialog.setCancelable(true)
             dialog.show()
 
-            dialog.setOnDismissListener {
-
-            }
             /* startActivity(Intent(this,Empty::class.java))
             overridePendingTransition(R.anim.slide_digonal,0)
 */

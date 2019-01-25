@@ -14,7 +14,7 @@
         android:id="@+id/contactslist"
 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="518dp">
 
     </android.support.v7.widget.RecyclerView>
 
@@ -35,7 +35,7 @@
         />
     <ImageView
         android:id="@+id/add"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="40dp"
         android:layout_width="30dp"
         android:layout_height="30dp"
@@ -47,10 +47,12 @@
         android:layout_height="wrap_content"
         android:text="New contact"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="4dp"
         android:textSize="9dp"
         android:layout_marginLeft="31dp"
         android:textColor="#2d2d2d"/>
+
+
 
 
 </RelativeLayout>

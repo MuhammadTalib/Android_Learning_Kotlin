@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -33,13 +34,17 @@ class MainActivity : AppCompatActivity() {
         updateList()
 
         add.setOnClickListener {
-
             startActivity(Intent(this,AddContact::class.java))
             overridePendingTransition(R.anim.slide_digonal,0)
         }
 
-        contactslist.adapter=ContactsAdapter(ContactData)
+
+        contactslist.adapter=ContactsAdapter(ContactData,::OnClicked)
         contactslist.layoutManager = LinearLayoutManager(this)
+    }
+    fun OnClicked(index:Int)
+    {
+        startActivity(Intent(this,ViewContact::class.java))
     }
 
 }

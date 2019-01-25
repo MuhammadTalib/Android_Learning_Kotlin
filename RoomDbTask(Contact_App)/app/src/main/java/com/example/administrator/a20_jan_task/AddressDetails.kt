@@ -1,5 +1,7 @@
 package com.example.administrator.a20_jan_task
 
+import android.arch.persistence.room.Ignore
+
 
 class Addressdetails(
 
