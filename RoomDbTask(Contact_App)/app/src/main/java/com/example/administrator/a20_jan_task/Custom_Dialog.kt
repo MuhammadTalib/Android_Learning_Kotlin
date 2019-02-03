@@ -22,9 +22,9 @@ class CustomDialog(var context: Activity ,var data:ArrayList<String>,val Change_
 
         context.windowManager.defaultDisplay.getMetrics(display)
 
-        window.setBackgroundDrawable(ColorDrawable(android.R.color.transparent))
-        window.setGravity(Gravity.BOTTOM)
-        window.attributes.windowAnimations = R.style.dialog_animation
+        window?.setBackgroundDrawable(ColorDrawable(android.R.color.transparent))
+        window?.setGravity(Gravity.BOTTOM)
+        window?.attributes?.windowAnimations = R.style.dialog_animation
 
         DialogList.adapter=DialogAdapter(data,::OnClickCheckbox)
         DialogList.layoutManager = LinearLayoutManager( context, LinearLayout.VERTICAL,false)

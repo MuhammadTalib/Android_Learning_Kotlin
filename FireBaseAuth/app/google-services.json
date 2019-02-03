@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "389653321590",
+    "firebase_url": "https://fir-auth-4c8fb.firebaseio.com",
+    "project_id": "fir-auth-4c8fb",
+    "storage_bucket": "fir-auth-4c8fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389653321590:android:3fb22d8196c6a268",
+        "android_client_info": {
+          "package_name": "com.example.talib.firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389653321590-ekjqs3vj8ssso4ss99gn6qgn0l3jr1mq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSJlUa-zTCgqpm4JRZyiIQ1vBqIKXBmNg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -76,7 +76,7 @@
         android:layout_height="60dp"
         android:src="@drawable/ic_person"
         android:onClick="profile"
-        />
+        android:layout_alignParentRight="true" />
     <TextView
         android:id="@+id/texthome"
         android:paddingLeft="10dp"
@@ -97,6 +97,7 @@
         android:layout_alignParentBottom="true"
         android:id="@+id/textprofile"
         android:text="Profile"
-        style="@style/imagetext" />
+        style="@style/imagetext"
+        android:layout_alignParentRight="true" />
 
 </RelativeLayout>

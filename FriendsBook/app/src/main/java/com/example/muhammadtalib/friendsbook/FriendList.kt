@@ -50,7 +50,6 @@ class FriendList : AppCompatActivity() {
     }
     fun friends(view: View)
     {
-
     }
     fun home(view:View)
     {

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 
         var spinnerAdapter: SpinnerCustomDropdownAdapter = SpinnerCustomDropdownAdapter(this,Countriesdata)
         var spinner: Spinner = findViewById(R.id.CountrySpinner) as Spinner
-        spinner?.adapter = spinnerAdapter
+        spinner.adapter = spinnerAdapter
 
 
      //   spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
     fun facebook(view:View)
     {
+
         val uri=Uri.parse("https://www.facebook.com/")
         val intent=Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)
@@ -69,12 +70,14 @@ class MainActivity : AppCompatActivity() {
     }
     fun Google(view:View)
     {
+
         val uri=Uri.parse("https://www.google.com/")
         val intent=Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)
     }
     fun Googleplus(view:View)
     {
+
         val uri=Uri.parse("https://plus.google.com/")
         val intent=Intent(Intent.ACTION_VIEW,uri)
         startActivity(intent)

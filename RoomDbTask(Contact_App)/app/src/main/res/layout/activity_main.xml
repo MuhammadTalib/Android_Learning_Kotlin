@@ -14,7 +14,9 @@
         android:id="@+id/contactslist"
 
         android:layout_width="match_parent"
-        android:layout_height="518dp">
+        android:layout_height="550dp"
+        android:layout_above="@+id/asaa"
+        >
 
     </android.support.v7.widget.RecyclerView>
 
@@ -30,9 +32,8 @@
         android:id="@+id/asaa"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#dedede"
         android:layout_alignParentBottom="true"
-        />
+        android:background="#dedede" />
     <ImageView
         android:id="@+id/add"
         android:layout_marginBottom="15dp"

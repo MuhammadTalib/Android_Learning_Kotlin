@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_add_contact.*
-import kotlinx.android.synthetic.main.activity_main.*
+
 
 class AddContact : AppCompatActivity() {
 
@@ -15,16 +15,28 @@ class AddContact : AppCompatActivity() {
     var Address_Type_List= arrayListOf<String>("Home","Work","Other","Custom")
     var status:Int=0
 
+
     companion object
     {
         var Contact:contactdetails= contactdetails()
+        var UpdateId:Int=0
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_contact)
 
-        done.setOnClickListener{
+        if(Contact.Contact_Name!="")
+        {
+            Name.setText(Contact.Contact_Name)
+            Number.setText(Contact.Contact_Number)
+            House_No.setText(Contact.Address.House_No)
+            Street.setText(Contact.Address.Block)
+            City.setText(Contact.Address.City)
+            Country.setText(Contact.Address.Country)
+            Email.setText(Contact.Address.Email)
+        }
 
+        done.setOnClickListener{
 
             if(Name.text.toString().isEmpty()){
                 Name.error = "Please Enter Some Text!"
@@ -41,6 +53,8 @@ class AddContact : AppCompatActivity() {
 
 
             save(Contact)
+            MainActivity.Contact_= Contact
+            startActivity(Intent(this,ViewContact::class.java))
 
             Name.setText("")
             Number.setText("")
@@ -89,12 +103,15 @@ class AddContact : AppCompatActivity() {
         MainActivity.ContactData.addAll(MainActivity.db.postsDao().getAll())
     }
     private fun save(text:contactdetails){
-        if(MainActivity.updateId == 0){
-            MainActivity.db.postsDao().insert(text)
-        }else{
-            MainActivity.db.postsDao().update(contactdetails(text.Contact_Name,text.Contact_Number,text.Contact_Type,text.Address))
+        if(UpdateId == 0)
+        {
+            MainActivity.db.postsDao().insert(contactdetails(Contact_Name = text.Contact_Name,Contact_Number=text.Contact_Number,Contact_Type=text.Contact_Type,Address=text.Address))
         }
-        MainActivity.updateId = 0
+        else
+        {
+            MainActivity.db.postsDao().update(contactdetails(UpdateId,Contact_Name = text.Contact_Name,Contact_Number=text.Contact_Number,Contact_Type=text.Contact_Type,Address=text.Address))
+        }
+        UpdateId = 0
         updateList()
     }
     fun Change_w_r_t_dialog(index:Int)

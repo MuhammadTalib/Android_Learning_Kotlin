@@ -21,6 +21,7 @@ class RecyclerGeneralViewTypeAdapter<T>(val data:ArrayList<T>, private val layou
     override fun getItemCount(): Int = data.size
     override fun onBindViewHolder(holder: RecyclerGeneralViewHolder, position: Int) = holder.onBindItem(data[position])
     override fun getItemViewType(position: Int): Int = onGetViewType(position,data[position])
+
     inner class RecyclerGeneralViewHolder(v:View) : RecyclerView.ViewHolder(v){
         fun onBindItem(item:T){
             onBindItem(itemView,item,adapterPosition)

@@ -14,12 +14,12 @@
         android:hint="Whats in your mind"/>
 
     <ImageView
-        android:onClick="camera"
+
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:src="@drawable/ic_add_a_photo_black_24dp"
-        />
+        android:layout_alignParentRight="true" />
 
     <android.support.v7.widget.RecyclerView
 
@@ -42,11 +42,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:src="@drawable/ic_add"
-        android:onClick="addFriends"/>
-
-
-
-
-
+        />
 
 </RelativeLayout>

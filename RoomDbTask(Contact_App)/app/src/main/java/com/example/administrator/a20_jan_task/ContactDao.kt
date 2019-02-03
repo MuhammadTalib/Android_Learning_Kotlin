@@ -18,6 +18,9 @@ interface ContactdetailsDao {
     fun update(post: contactdetails)
 
     @Delete
+    fun delete(post:contactdetails)
+
+    @Delete
     fun delete(post:List<contactdetails>)
 
 }

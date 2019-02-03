@@ -6,15 +6,18 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import kotlinx.android.synthetic.main.activity_add_contact.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
+        var OnClickDialogItem=0
+        var Contact_=contactdetails()
         var ContactData = ArrayList<contactdetails>()
         lateinit var db: AppDb
-        var updateId = 0
+        var id = 0
         fun updateList()
         {
             ContactData.clear()
@@ -26,12 +29,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         db = Room.databaseBuilder(
                 this,
                 AppDb::class.java,
-                "ContactApp").allowMainThreadQueries().fallbackToDestructiveMigration().build()
+                "ContactAppp").allowMainThreadQueries().fallbackToDestructiveMigration().build()
+
+
 
         updateList()
+
+
 
         add.setOnClickListener {
             startActivity(Intent(this,AddContact::class.java))
@@ -39,12 +47,28 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        contactslist.adapter=ContactsAdapter(ContactData,::OnClicked)
+        contactslist.adapter=ContactsAdapter(ContactData,::OnClicked,::OnLongClicked)
         contactslist.layoutManager = LinearLayoutManager(this)
     }
     fun OnClicked(index:Int)
     {
+        Contact_= ContactData[index]
         startActivity(Intent(this,ViewContact::class.java))
+    }
+    fun OnLongClicked(index:Int)
+    {
+        id=index
+        Contact_= ContactData[index]
+        val dialog = Option_Dialog(this,::OnClick)
+        dialog.setCancelable(true)
+        dialog.show()
+    }
+    fun OnClick()
+    {
+        if(OnClickDialogItem==0)
+            contactslist.adapter?.notifyItemChanged(id)
+        else if(OnClickDialogItem==1)
+            startActivity(Intent(this,AddContact::class.java))
     }
 
 }

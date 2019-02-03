@@ -10,11 +10,13 @@
     <com.github.abdularis.civ.CircleImageView
 
         android:id="@+id/contact_image_v"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_account_circle_black_24dp"
         android:translationZ="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         />
 
 
@@ -23,11 +25,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/contact_image_v"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="29dp"
         android:layout_marginLeft="5dp"
         android:text="Name"
         android:translationZ="1dp"
-        android:textSize="20dp"
+        android:textSize="21dp"
         android:textColor="#000"
         android:layout_toRightOf="@+id/contact_image_v" />
 

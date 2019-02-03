@@ -57,9 +57,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun save(text:String){
-        if(updateId == 0){
+        if(updateId == 0)
+        {
             db.postsDao().insert(Post(text = text, comments = arrayOf("Comment 1","Comment 2"),user = PostUser("Student")))
-        }else{
+        }
+        else
+        {
             db.postsDao().update(Post(updateId,text, arrayOf("Comment 1","Comment 2"),PostUser("Student")))
         }
         updateId = 0
