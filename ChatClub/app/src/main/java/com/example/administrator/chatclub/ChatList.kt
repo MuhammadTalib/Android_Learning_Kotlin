@@ -21,10 +21,10 @@ import java.lang.Exception
 class ChatList : AppCompatActivity() {
 
     lateinit var Authentication: FirebaseAuth
-    var CurrentUser:UserAccount? = null
+    var CurrentUser:Users? = null
     companion object {
         var friend=0
-        var new=UserAccount()
+        var new=Users()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,31 +42,29 @@ class ChatList : AppCompatActivity() {
         // MyChatList.layoutManager = LinearLayoutManager( this, LinearLayout.VERTICAL,false)
         // MyChatList.adapter = ChatListAdapter(MainPage.AccountData[MainPage.MyAccountIndex].FriendList,::openMessageList)
 
+
         if (Authentication.currentUser == null) {
-            Log.e("hahaha", "nulll")
+
             exitChat()
             return
-        } else {
-            Log.e("hahaha", "not_nulll")
+        }
+        else
+        {
             FirebaseDatabase.getInstance().getReference("Chat_Users")
                     .child(Authentication.currentUser?.uid ?: "")
                     .addListenerForSingleValueEvent(object : ValueEventListener
                     {
-                        override fun onCancelled(p0: DatabaseError) {
-                            Log.e("hahaha", "cancelled")
+                        override fun onCancelled(p0: DatabaseError)
+                        {
                             exitChat()
                         }
-
-                        override fun onDataChange(snapshot: DataSnapshot) {
-
-                            //CurrentUser = snapshot.getValue(UserAccount::class.java)
-
+                        override fun onDataChange(snapshot: DataSnapshot)
+                        {
+                            CurrentUser = snapshot.getValue(Users::class.java)
                             if (CurrentUser == null) {
-                                Log.e("hahaha", "is_null")
-                               // exitChat()
+                                exitChat()
                             }
                         }
-
                     })
         }
 
@@ -89,9 +87,8 @@ class ChatList : AppCompatActivity() {
     }
 
     fun openMessageList(AnotherUserIndex:Int){
-        new=MainPage.AccountData[AnotherUserIndex]
+        //new=MainPage.AccountData[AnotherUserIndex]
         friend=AnotherUserIndex
-        Log.e("hold","$friend")
         val intent= Intent(this,MessageList::class.java)
         startActivityForResult(intent,10000)
 

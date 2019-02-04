@@ -125,6 +125,7 @@ class ChatActivity : AppCompatActivity(),ChildEventListener {
 
     override fun onChildAdded(p0: DataSnapshot, p1: String?) {
         val fbMsg = p0.getValue(MyChatMessage::class.java)
+        Log.e("hahaha",fbMsg?.messageText)
         if(fbMsg!=null){
             myChatAdapter.add(fbMsg)
             msgsList.scrollToPosition(myChatAdapter.itemCount-1)

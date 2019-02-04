@@ -67,11 +67,11 @@ class SignUpForm : AppCompatActivity() {
             }
             else
             {
-                var temp = UserAccount()
+                var temp = Users()
                 var emailtext=signupemailinput.text.toString()
                 var nametext=signupnameinput.text.toString()
                 var passtext=signuppasswordinput.text.toString()
-                MainPage.AccountData.add(temp)
+              //  MainPage.AccountData.add(temp)
                 //var text:Long=CountrySpinner.selectedItem
                // Log.e("hahaha","${text}")
                // Log.e("hahaha","${Countriesdata[text.toInt()].name}")
@@ -96,7 +96,8 @@ class SignUpForm : AppCompatActivity() {
                             FirebaseDatabase.getInstance()
                                     .getReference("Chat_Users")
                                     .child(fbUser.uid)
-                                    .setValue(UserAccount().apply {
+                                    .setValue(Users().apply {
+
                                         this.Email=email
                                         this.Username=name
                                         this.uid = fbUser.uid
