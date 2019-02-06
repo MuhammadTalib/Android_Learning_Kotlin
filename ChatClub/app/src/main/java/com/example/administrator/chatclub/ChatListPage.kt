@@ -11,7 +11,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import kotlinx.android.synthetic.main.activity_chat_list.*
+import kotlinx.android.synthetic.main.activity_chat_list_page.*
 
 class ChatListPage : AppCompatActivity() {
 
@@ -34,7 +34,7 @@ class ChatListPage : AppCompatActivity() {
             userImage.setImageBitmap(MainPage.AccountData[MainPage.MyAccountIndex].userImage as Bitmap)
 */
 
-        chatuserAdapter=ChatListAdapter(friendlist)
+        chatuserAdapter=ChatListAdapter(friendlist,::openMessageList,::openProfile)
 
         mychatlist.adapter =chatuserAdapter
         mychatlist.layoutManager = LinearLayoutManager( this, LinearLayout.VERTICAL,false)
@@ -97,6 +97,7 @@ class ChatListPage : AppCompatActivity() {
                             }
                         }
                     })
+
         }
 
         userImage.setOnClickListener {
@@ -113,7 +114,16 @@ class ChatListPage : AppCompatActivity() {
         }
 
     }
+    fun openMessageList(index:Int){
 
+        startActivity(Intent(this,MessageList::class.java))
+
+    }
+    fun openProfile(index:Int){
+
+        startActivity(Intent(this,Profile::class.java))
+
+    }
     private fun exitChat(){
         Authentication.signOut()
         startActivity(Intent(this,MainPage::class.java))

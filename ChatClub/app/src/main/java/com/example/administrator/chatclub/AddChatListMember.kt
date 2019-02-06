@@ -10,7 +10,6 @@ import android.widget.LinearLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_add_chat_list_member.*
-import kotlinx.android.synthetic.main.activity_chat_list.*
 import kotlin.math.log
 
 class AddChatListMember : AppCompatActivity(), ChildEventListener {
@@ -20,9 +19,10 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
     var CurrentUser: Users? = null
     lateinit var usersList: ArrayList<Users>
     lateinit var friendlist:ArrayList<String>
-     lateinit var UserAdapter:AddChatListAdapter
+    lateinit var UserAdapter:AddChatListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_chat_list_member)
 
