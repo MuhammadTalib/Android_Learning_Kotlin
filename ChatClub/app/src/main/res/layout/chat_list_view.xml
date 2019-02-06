@@ -37,12 +37,13 @@
         android:layout_marginLeft="70dp"
         />
     <ImageView
-        android:id="@+id/add"
+        android:id="@+id/openchatbtn"
         android:layout_gravity="right"
-        android:layout_margin="10dp"
-        android:layout_width="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_width="35dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_add"
+        android:layout_marginRight="25dp"
+        android:src="@drawable/ic_message_black_24dp"
         />
 
 

@@ -1,7 +1,10 @@
 package com.example.administrator.chatclub
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 
@@ -28,8 +31,10 @@ class AddChatListAdapter ( val data:ArrayList<Users>,
 */
             p0.myText.text=data[p1].Username
            //p0.myStatus.text=data[p1].lastmessage
-            p0.itemView.setOnClickListener {
+            p0.myAddButton.setOnClickListener {
+                Log.e("hahaha","${p1}")
                  onItemClick(p1)
+
             }
 
           //  p0.myAddButton.setOnClickListener {
@@ -52,5 +57,11 @@ class AddChatListAdapter ( val data:ArrayList<Users>,
        // }
 
     }
+    fun add(item:Users){
+        data.add(item)
+        notifyItemInserted(data.size-1)
+    }
+
+
 
 }
