@@ -6,10 +6,18 @@
     tools:context=".Frag1">
 
     <TextView
-        android:textColor="@android:color/white"
+        android:id="@+id/text1"
+        android:textColor="#000"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"/>
+        android:visibility="gone"
+        android:text="hello_blank_fragment"/>
+    <Button
+        android:id="@+id/textshowbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        />
 
 </FrameLayout>

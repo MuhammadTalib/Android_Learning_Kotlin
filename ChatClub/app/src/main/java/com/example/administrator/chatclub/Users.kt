@@ -7,7 +7,7 @@ class Users
     //var password:String?=null
     var uid:String?=null
    var Country:String?=null
-    var FriendListsUid= arrayListOf<String>()
+    var FriendListsUid= arrayListOf<frienddata>()
    // var CoverPhoto:Any?=null
    // var userImage:Any?=null
    // var lastmessage:String="Say Hi to you new friend ${this.Username}"

@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         myPager.adapter = MypagerAdapter(supportFragmentManager, arrayListOf(
                 Frag1(),
-                Frag2()
+                Frag2(),
+                BlankFragment()
         ))
         val tabLayout = findViewById(R.id.myTabs) as TabLayout
         tabLayout.setupWithViewPager(myPager)

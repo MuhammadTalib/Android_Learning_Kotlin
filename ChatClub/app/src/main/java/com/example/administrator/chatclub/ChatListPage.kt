@@ -72,7 +72,7 @@ class ChatListPage : AppCompatActivity() {
                                          Log.e("hahaha","gggg")
                                          var TempUser: Users? = null
                                          FirebaseDatabase.getInstance().getReference("Chat_Users")
-                                                 .child(i)
+                                                 .child(i.frienduid!!)
                                                  .addListenerForSingleValueEvent(object : ValueEventListener {
                                                      override fun onCancelled(p0: DatabaseError) {
                                                          //exitChat()

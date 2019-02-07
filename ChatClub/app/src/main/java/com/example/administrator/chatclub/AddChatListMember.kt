@@ -18,7 +18,7 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
     lateinit var chatUserDB: DatabaseReference
     var CurrentUser: Users? = null
     lateinit var usersList: ArrayList<Users>
-    lateinit var friendlist:ArrayList<String>
+    lateinit var friendlist:ArrayList<frienddata>
     lateinit var UserAdapter:AddChatListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,8 +70,12 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
     }
         fun onItemClick(position: Int)
         {
+            var newfriend:frienddata=frienddata().apply {
+                this.chatUid="123"
+                this.frienduid=usersList[position].uid
+            }
 
-           friendlist.add(usersList[position].uid!!)
+           friendlist.add(newfriend)
             FirebaseDatabase.getInstance().getReference("Chat_Users")
                     .child(auth.currentUser?.uid ?: "")
                     .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -96,8 +100,8 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
         }
         override fun onChildAdded(p0: DataSnapshot, p1: String?) {
             val fbuser = p0.getValue(Users::class.java)
-            val contains:Boolean=fbuser?.uid in friendlist
-            if (fbuser != null && fbuser.uid!=CurrentUser?.uid && !contains) {
+           // val contains:Boolean=fbuser?.uid in friendlist
+            if (fbuser != null && fbuser.uid!=CurrentUser?.uid ) {
                 UserAdapter.add(fbuser)
                // usersList.add(fbuser)
             }
