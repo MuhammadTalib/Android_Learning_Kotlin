@@ -16,9 +16,14 @@ import kotlinx.android.synthetic.main.activity_chat_list_page.*
 class ChatListPage : AppCompatActivity() {
 
     lateinit var Authentication: FirebaseAuth
-    var CurrentUser:Users? = null
     lateinit var friendlist:ArrayList<Users>
     lateinit var chatuserAdapter:ChatListAdapter
+
+    companion object {
+        var chatUid:String?=null
+        var CurrentUser:Users? = null
+        var chatUser:Users?=null
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -103,8 +108,10 @@ class ChatListPage : AppCompatActivity() {
 
     }
     fun openMessageList(index:Int){
-
-        startActivity(Intent(this,MessageList::class.java))
+        chatUser=friendlist[index]
+        chatUid= CurrentUser!!.FriendListsUid[index].chatUid
+        var Intent=Intent(this,MessageList::class.java)
+        startActivity(Intent)
 
     }
     fun openProfile(index:Int){
