@@ -25,7 +25,6 @@ class ChatListPage : AppCompatActivity() {
         setContentView(R.layout.activity_chat_list_page)
         getSupportActionBar()?.hide()
         friendlist= arrayListOf()
-
         Authentication = FirebaseAuth.getInstance()
 
         /* if(MainPage.AccountData[MainPage.MyAccountIndex].userImage is Int)
@@ -52,24 +51,18 @@ class ChatListPage : AppCompatActivity() {
                     {
                         override fun onCancelled(p0: DatabaseError)
                         {
-                            Log.e("hahaha","OnCancelled")
                             exitChat()
                         }
                         override fun onDataChange(snapshot: DataSnapshot)
                         {
-                            Log.e("hahaha","OnDataChanged")
                             CurrentUser = snapshot.getValue(Users::class.java)
                             if (CurrentUser == null) {
-                                Log.e("hahaha","Current User Null")
                                 exitChat()
                             }
                             else
                             {
-                                Log.e("hahaha","Current User Not Null")
-                                 Log.e("hahaha","${CurrentUser?.FriendListsUid?.size}")
                                 if(CurrentUser?.FriendListsUid?.size !=0) {
                                      for (i in CurrentUser!!.FriendListsUid) {
-                                         Log.e("hahaha","gggg")
                                          var TempUser: Users? = null
                                          FirebaseDatabase.getInstance().getReference("Chat_Users")
                                                  .child(i.frienduid!!)
@@ -83,16 +76,11 @@ class ChatListPage : AppCompatActivity() {
                                                          if(TempUser!=null)
                                                          {
                                                              chatuserAdapter.add(TempUser!!)
-                                                             Log.e("hahaha", "TEMP USER= ${TempUser?.Username}")
                                                          }
                                                      }
 
                                                  })
                                      }
-                                 }
-                                 else
-                                 {
-                                     Log.e("hahaha","uid is null")
                                  }
                             }
                         }
