@@ -165,8 +165,8 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
             }
            // friendlist.add(CurrentUser!!.friend_requests[position])
            // friendrequestsendlist.remove(CurrentUser!!.friend_requests[position])
-          //  CurrentUser!!.friend_requests.remove(CurrentUser!!.friend_requests[position])
-           /* FirebaseDatabase.getInstance().getReference("Chat_Users")
+            //  CurrentUser!!.friend_requests.remove(CurrentUser!!.friend_requests[position])
+            /* FirebaseDatabase.getInstance().getReference("Chat_Users")
                     .child(auth.currentUser?.uid ?: "")
                     .addListenerForSingleValueEvent(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
@@ -176,7 +176,7 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
                             snapshot.ref.child("FriendListsUid").setValue(friendlist)
                         }
                     })*/
-/*
+            /*
             FirebaseDatabase.getInstance().getReference("Chat_Users")
                     .child(auth.currentUser?.uid ?: "")
                     .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -200,6 +200,7 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
 
                             tempuser=snapshot.getValue(Users::class.java)
+                            tempuser?.add_friendList(friend_sentrequest)
                             tempuser?.delete_sentRequest(friend_sentrequest)
                         }
                     })
@@ -208,6 +209,7 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
            /* tempuser=CurrentUser!!.find_UserByUid(CurrentUser!!.friend_requests[position].frienduid!!).also {
                 Log.e("hahaha","Zafar")
             }*/
+            CurrentUser?.add_friendList(CurrentUser!!.friend_requests[position])
             CurrentUser?.delete_friendRequest(CurrentUser!!.friend_requests[position])
             startActivity(Intent(this, ChatListPage::class.java))
 

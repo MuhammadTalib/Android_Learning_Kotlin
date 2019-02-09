@@ -20,15 +20,13 @@ class Users
 
     public fun add_friendList(friend:frienddata)
     {
-        Log.e("hahaha","oin fun")
-        var friendrequest= arrayListOf<frienddata>()
+        Log.e("hahaha","addfriend list")
+        var friendlist= arrayListOf<frienddata>()
 
-        if(this.friend_requests.contains(friend))
-            this.friend_requests.remove(friend)
+        this.FriendListsUid.add(friend)
+        friendlist.addAll(this.FriendListsUid)
 
-        friendrequest.addAll(this.friend_requests)
-
-        Log.e("hahaha","removed")
+        Log.e("hahaha","added")
         FirebaseDatabase.getInstance().getReference("Chat_Users")
                 .child(this.uid!!)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -36,7 +34,7 @@ class Users
 
                     }
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        snapshot.ref.child("friend_requests").setValue(friendrequest)
+                        snapshot.ref.child("FriendListsUid").setValue(friendlist)
                     }
                 })
     }
@@ -50,8 +48,6 @@ class Users
             this.friend_requests.remove(friend)
 
         friendrequest.addAll(this.friend_requests)
-
-        Log.e("hahaha","removed")
         FirebaseDatabase.getInstance().getReference("Chat_Users")
                 .child(this.uid!!)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -102,8 +98,7 @@ class Users
     }
     public fun find_UserByUid(uidd:String):Users
     {
-        Log.e("hahaha","In func")
-        Log.e("hahaha",this.uid)
+        Log.e("hahaha","finding")
 
         FirebaseDatabase.getInstance().getReference("Chat_Users")
                 .child(uidd)
