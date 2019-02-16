@@ -71,12 +71,12 @@ class SignUpForm : AppCompatActivity() {
                 var emailtext=signupemailinput.text.toString()
                 var nametext=signupnameinput.text.toString()
                 var passtext=signuppasswordinput.text.toString()
-              /*//  MainPage.AccountData.add(temp)
-                //var text:Long=CountrySpinner.selectedItem
-               // Log.e("hahaha","${text}")
-               // Log.e("hahaha","${Countriesdata[text.toInt()].name}")
-              //  val intent = Intent(this, MainPage::class.java)
-               // startActivity(intent)*/
+                /*//  MainPage.AccountData.add(temp)
+                  //var text:Long=CountrySpinner.selectedItem
+                 // Log.e("hahaha","${text}")
+                 // Log.e("hahaha","${Countriesdata[text.toInt()].name}")
+                //  val intent = Intent(this, MainPage::class.java)
+                 // startActivity(intent)*/
                 signIn(nametext,emailtext,passtext,"Pakistan")
             }
 
@@ -98,7 +98,7 @@ class SignUpForm : AppCompatActivity() {
                                     .child(fbUser.uid)
                                     .setValue(Users().apply {
 
-                                       this.Email=email
+                                        this.Email=email
                                         this.Username=name
                                         this.uid = fbUser.uid
                                         this.Country= Country
@@ -106,7 +106,7 @@ class SignUpForm : AppCompatActivity() {
                                     }).addOnCompleteListener { dbTask ->
                                         hideProgress()
                                         if(dbTask.isSuccessful){
-                                            startActivity(Intent(this,ChatList::class.java))
+                                            startActivity(Intent(this,ChatListPage::class.java))
                                             finish()
                                         }else{
                                             toast("There was an error, please try again")

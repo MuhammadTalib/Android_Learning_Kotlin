@@ -5,4 +5,6 @@ class MyAppUser {
   var fullName:String? = null
   var email:String? = null
   var age:Int? = null
+  var image:String?=null
+
 }

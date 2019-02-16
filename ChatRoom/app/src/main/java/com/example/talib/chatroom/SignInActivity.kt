@@ -17,9 +17,8 @@ class SignInActivity : AppCompatActivity() {
 
 
     auth = FirebaseAuth.getInstance()
-
     if(auth.currentUser != null){
-      startActivity(Intent(this,ChatActivity::class.java))
+      startActivity(Intent(this,Profile::class.java))
       finish()
     }
 

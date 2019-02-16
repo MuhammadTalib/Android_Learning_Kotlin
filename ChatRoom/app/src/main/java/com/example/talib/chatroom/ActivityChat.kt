@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -26,17 +25,17 @@ class ChatActivity : AppCompatActivity(),ChildEventListener {
         chatMessages = arrayListOf()
 
         myChatAdapter = RecyclerViewGeneralAdapter(
-            chatMessages,
-            mapOf(
-                1 to R.layout.in_msg_layout,
-                2 to R.layout.out_msg_layout
-            ),{_, itemData ->
-                if(auth.currentUser?.uid != itemData.userId){
-                    1
-                }else{
-                    2
-                }
+                chatMessages,
+                mapOf(
+                        1 to R.layout.in_msg_layout,
+                        2 to R.layout.out_msg_layout
+                ),{_, itemData ->
+            if(auth.currentUser?.uid != itemData.userId){
+                1
+            }else{
+                2
             }
+        }
         ){itemData, viewHolder ->
             val viewType = viewHolder.itemViewType
             val itemView = viewHolder.itemView
@@ -54,24 +53,20 @@ class ChatActivity : AppCompatActivity(),ChildEventListener {
             return
         }else{
             FirebaseDatabase.getInstance().getReference("users")
-                .child(auth.currentUser?.uid ?: "")
-                .addListenerForSingleValueEvent(object : ValueEventListener{
-                    override fun onCancelled(p0: DatabaseError) {
-                        exitChat()
-                    }
-
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        myProfile = snapshot.getValue(MyAppUser::class.java)
-                        if(myProfile == null){
+                    .child(auth.currentUser?.uid ?: "")
+                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onCancelled(p0: DatabaseError) {
                             exitChat()
                         }
-                        else
-                        {
-                            Log.e("hahaha","asd")
-                        }
-                    }
 
-                })
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            myProfile = snapshot.getValue(MyAppUser::class.java)
+                            if(myProfile == null){
+                                exitChat()
+                            }
+                        }
+
+                    })
         }
 
 
@@ -124,12 +119,11 @@ class ChatActivity : AppCompatActivity(),ChildEventListener {
     }
 
     override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-      /*  val fbMsg = p0.getValue(MyChatMessage::class.java)
-        Log.e("hahaha",fbMsg?.messageText)
+        val fbMsg = p0.getValue(MyChatMessage::class.java)
         if(fbMsg!=null){
             myChatAdapter.add(fbMsg)
             msgsList.scrollToPosition(myChatAdapter.itemCount-1)
-        }*/
+        }
     }
 
     override fun onChildRemoved(p0: DataSnapshot) {

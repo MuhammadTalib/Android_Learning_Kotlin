@@ -14,15 +14,15 @@ open class PostViewHolder(MyItem: View): RecyclerView.ViewHolder(MyItem)
   val postcontent: TextView =MyItem.findViewById(R.id.postContent)
   val sharebutton:Button=MyItem.findViewById(R.id.shareButton)
 
-  open fun bindItem(msgItem: com.example.administrator.chatclub.post){
+  open fun bindItem(){
 
-    if(MainPage.AccountData[MainPage.MyAccountIndex].userImage is Int)
+   /* if(MainPage.AccountData[MainPage.MyAccountIndex].userImage is Int)
       myImage.setImageResource(MainPage.AccountData[MainPage.MyAccountIndex].userImage as Int)
     else if(MainPage.AccountData[MainPage.MyAccountIndex].userImage is Bitmap)
       myImage.setImageBitmap(MainPage.AccountData[MainPage.MyAccountIndex].userImage as Bitmap)
-
-    name.text=msgItem.userAccount.Username
-    postcontent.text=msgItem.postContent
+*/
+   // name.text=msgItem.userAccount.Username
+  //  postcontent.text=msgItem.postContent
 
 
   }

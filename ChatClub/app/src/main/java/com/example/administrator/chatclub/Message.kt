@@ -6,6 +6,5 @@ class Message()
     var userId:String? = null
     var userName:String? = null
     var messageText:String? = null
-  //  var message_image:Any=0
-  //  var ImagedMessage:Int=0
+    var image:String?=null
 }

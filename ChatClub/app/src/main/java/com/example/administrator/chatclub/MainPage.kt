@@ -24,8 +24,8 @@ class MainPage : AppCompatActivity() {
         var MessageImagecClicked = 0
         var myBitmapImg:Any=0
         var MyAccountIndex:Int=0
-        var AccountData = ArrayList<UserAccount>()
-        var Posts=ArrayList<post>()
+        //var AccountData = ArrayList<UserAccount>()
+       // var Posts=ArrayList<post>()
     }
 
 

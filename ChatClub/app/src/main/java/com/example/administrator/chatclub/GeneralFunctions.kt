@@ -13,12 +13,12 @@ import com.google.firebase.database.ValueEventListener
 fun Context.t(m:String) = Toast.makeText(this,m,Toast.LENGTH_SHORT).show()
 
 fun Context.toast(msg:String?){
-    Toast.makeText(this,msg ?: "",Toast.LENGTH_LONG).show()
+  Toast.makeText(this,msg ?: "",Toast.LENGTH_LONG).show()
 }
 
 fun View.show(){
-    visibility = View.VISIBLE
+  visibility = View.VISIBLE
 }
 fun View.hide(){
-    visibility = View.GONE
+  visibility = View.GONE
 }

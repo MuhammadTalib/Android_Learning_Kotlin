@@ -1,10 +1,12 @@
 package com.example.administrator.chatclub
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.security.acl.Group
 
 class Users
 {
@@ -15,6 +17,8 @@ class Users
     var uid:String?=null
     var Country:String?=null
     var FriendListsUid=arrayListOf<frienddata>()
+   // var totalGroups:Int=0
+    var GroupListUid= arrayListOf<GroupOfUsers>()
     var friend_requests= arrayListOf<frienddata>()
     var sent_requests= arrayListOf<frienddata>()
 
@@ -35,6 +39,24 @@ class Users
                     }
                     override fun onDataChange(snapshot: DataSnapshot) {
                         snapshot.ref.child("FriendListsUid").setValue(friendlist)
+                    }
+                })
+    }
+    public fun add_GroupList(group:GroupOfUsers)
+    {
+        Log.e("hahaha","group list")
+        var grouplist= arrayListOf<GroupOfUsers>()
+        this.GroupListUid.add(group)
+        grouplist.addAll(this.GroupListUid)
+
+        FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(this.uid!!)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.child("GroupListUid").setValue(grouplist)
                     }
                 })
     }
@@ -98,17 +120,19 @@ class Users
     }
     public fun find_UserByUid(uidd:String):Users
     {
+        lateinit var auth: FirebaseAuth
+        auth = FirebaseAuth.getInstance()
         Log.e("hahaha","finding")
-
+        Log.e("hahaha",uidd)
         FirebaseDatabase.getInstance().getReference("Chat_Users")
-                .child(uidd)
+                .child(uidd ?: "")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                         Log.e("hahaha","on Cancelled")
                     }
                     override fun onDataChange(snapshot: DataSnapshot) {
-                        Log.e("hahaha","OndataChanes")
-                        tempuser=snapshot.getValue(Users::class.java)
+                        Log.e("hahaha","aaaaaaaaaaaaaaaaaaaOndataChanes")
+                       // tempuser=snapshot.getValue(Users::class.java)
                     }
                 })
 

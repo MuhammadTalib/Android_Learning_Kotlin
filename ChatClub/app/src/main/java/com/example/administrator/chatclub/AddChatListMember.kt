@@ -84,7 +84,7 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
                                     friend_request_list.visibility= View.VISIBLE
 
                                     for (i in CurrentUser!!.friend_requests) {
-                                        var TempUser: Users? = null
+                                        var TempUser: Users?
                                         FirebaseDatabase.getInstance().getReference("Chat_Users")
                                                 .child(i.frienduid!!)
                                                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -114,134 +114,134 @@ class AddChatListMember : AppCompatActivity(), ChildEventListener {
         chatUserDB = FirebaseDatabase.getInstance().getReference("Chat_Users")
         chatUserDB.addChildEventListener(this)
     }
-        fun onItemClick(position: Int)
+    fun onItemClick(position: Int)
+    {
+        toast("Friend Request Send!")
+        var newfriend:frienddata=frienddata().apply {
+            this.chatUid=auth.currentUser?.uid+usersList[position].uid
+            this.frienduid=usersList[position].uid
+        }
+        var newfriend2:frienddata=frienddata().apply {
+            this.chatUid=auth.currentUser?.uid+usersList[position].uid
+            this.frienduid=auth.currentUser?.uid
+        }
+
+        sentrequests.add(newfriend)
+
+        FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(auth.currentUser?.uid ?: "")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        exitChat()
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.child("sent_requests").setValue(sentrequests)
+                    }
+                })
+
+        FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(usersList[position].uid ?: "")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        exitChat()
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        TempUser = snapshot.getValue(Users::class.java)
+                        friendrequestsendlist.addAll(TempUser!!.friend_requests)
+                        friendrequestsendlist.add(newfriend2)
+                        snapshot.ref.child("friend_requests").setValue(friendrequestsendlist)
+                    }
+                })
+
+
+        startActivity(Intent(this, ChatListPage::class.java))
+
+    }
+    fun AddFriend(position: Int)
+    {
+        var friend_sentrequest:frienddata=frienddata().apply {
+            this.frienduid=CurrentUser?.uid
+            this.chatUid=CurrentUser!!.friend_requests[position].chatUid
+        }
+        // friendlist.add(CurrentUser!!.friend_requests[position])
+        // friendrequestsendlist.remove(CurrentUser!!.friend_requests[position])
+        //  CurrentUser!!.friend_requests.remove(CurrentUser!!.friend_requests[position])
+        /* FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(auth.currentUser?.uid ?: "")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        exitChat()
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.child("FriendListsUid").setValue(friendlist)
+                    }
+                })*/
+        /*
+        FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(auth.currentUser?.uid ?: "")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        exitChat()
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.ref.child("friend_requests").setValue(CurrentUser!!.friend_requests)
+                    }
+                })*/
+        //CurrentUser?.find_UserByUid("")
+        //Log.e("hahaha",CurrentUser?.find_UserByUid(CurrentUser!!.friend_requests[position].frienduid!!)?.Email)
+
+
+        FirebaseDatabase.getInstance().getReference("Chat_Users")
+                .child(CurrentUser!!.friend_requests[position].frienduid!!)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+
+                    }
+                    override fun onDataChange(snapshot: DataSnapshot) {
+
+                        tempuser=snapshot.getValue(Users::class.java)
+                        tempuser?.add_friendList(friend_sentrequest)
+                        tempuser?.delete_sentRequest(friend_sentrequest)
+                    }
+                })
+
+
+        /* tempuser=CurrentUser!!.find_UserByUid(CurrentUser!!.friend_requests[position].frienduid!!).also {
+             Log.e("hahaha","Zafar")
+         }*/
+        CurrentUser?.add_friendList(CurrentUser!!.friend_requests[position])
+        CurrentUser?.delete_friendRequest(CurrentUser!!.friend_requests[position])
+        startActivity(Intent(this, ChatListPage::class.java))
+
+    }
+
+    override fun onCancelled(p0: DatabaseError) {
+    }
+    override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+    }
+    override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+    }
+    override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+        val fbuser = p0.getValue(Users::class.java)
+        val alreadyfriend:Boolean=fbuser?.uid in friendlist.map({item->item.frienduid})
+        val requestsend:Boolean=fbuser?.uid in CurrentUser!!.sent_requests.map({item->item.frienduid})
+        if (fbuser != null && fbuser.uid!=CurrentUser?.uid && !alreadyfriend && !requestsend)
         {
-            toast("Friend Request Send!")
-            var newfriend:frienddata=frienddata().apply {
-                this.chatUid=auth.currentUser?.uid+usersList[position].uid
-                this.frienduid=usersList[position].uid
-           }
-            var newfriend2:frienddata=frienddata().apply {
-                this.chatUid=auth.currentUser?.uid+usersList[position].uid
-                this.frienduid=auth.currentUser?.uid
-            }
-
-           sentrequests.add(newfriend)
-
-           FirebaseDatabase.getInstance().getReference("Chat_Users")
-                    .child(auth.currentUser?.uid ?: "")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
-                            exitChat()
-                        }
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            snapshot.ref.child("sent_requests").setValue(sentrequests)
-                        }
-                    })
-
-            FirebaseDatabase.getInstance().getReference("Chat_Users")
-                    .child(usersList[position].uid ?: "")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
-                            exitChat()
-                        }
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            TempUser = snapshot.getValue(Users::class.java)
-                            friendrequestsendlist.addAll(TempUser!!.friend_requests)
-                            friendrequestsendlist.add(newfriend2)
-                            snapshot.ref.child("friend_requests").setValue(friendrequestsendlist)
-                        }
-                    })
-
-
-            startActivity(Intent(this, ChatListPage::class.java))
-
+            nonewrequest.visibility=View.GONE
+            pe.visibility=View.VISIBLE
+            pee.visibility=View.VISIBLE
+            MyAddChatList.visibility=View.VISIBLE
+            UserAdapter.add(fbuser)
         }
-        fun AddFriend(position: Int)
-        {
-            var friend_sentrequest:frienddata=frienddata().apply {
-                this.frienduid=CurrentUser?.uid
-                this.chatUid=CurrentUser!!.friend_requests[position].chatUid
-            }
-           // friendlist.add(CurrentUser!!.friend_requests[position])
-           // friendrequestsendlist.remove(CurrentUser!!.friend_requests[position])
-            //  CurrentUser!!.friend_requests.remove(CurrentUser!!.friend_requests[position])
-            /* FirebaseDatabase.getInstance().getReference("Chat_Users")
-                    .child(auth.currentUser?.uid ?: "")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
-                            exitChat()
-                        }
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            snapshot.ref.child("FriendListsUid").setValue(friendlist)
-                        }
-                    })*/
-            /*
-            FirebaseDatabase.getInstance().getReference("Chat_Users")
-                    .child(auth.currentUser?.uid ?: "")
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
-                            exitChat()
-                        }
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            snapshot.ref.child("friend_requests").setValue(CurrentUser!!.friend_requests)
-                        }
-                    })*/
-            //CurrentUser?.find_UserByUid("")
-            //Log.e("hahaha",CurrentUser?.find_UserByUid(CurrentUser!!.friend_requests[position].frienduid!!)?.Email)
+    }
 
+    override fun onChildRemoved(p0: DataSnapshot) {
 
-            FirebaseDatabase.getInstance().getReference("Chat_Users")
-                    .child(CurrentUser!!.friend_requests[position].frienduid!!)
-                    .addListenerForSingleValueEvent(object : ValueEventListener {
-                        override fun onCancelled(p0: DatabaseError) {
-
-                        }
-                        override fun onDataChange(snapshot: DataSnapshot) {
-
-                            tempuser=snapshot.getValue(Users::class.java)
-                            tempuser?.add_friendList(friend_sentrequest)
-                            tempuser?.delete_sentRequest(friend_sentrequest)
-                        }
-                    })
-
-
-           /* tempuser=CurrentUser!!.find_UserByUid(CurrentUser!!.friend_requests[position].frienduid!!).also {
-                Log.e("hahaha","Zafar")
-            }*/
-            CurrentUser?.add_friendList(CurrentUser!!.friend_requests[position])
-            CurrentUser?.delete_friendRequest(CurrentUser!!.friend_requests[position])
-            startActivity(Intent(this, ChatListPage::class.java))
-
-         }
-
-        override fun onCancelled(p0: DatabaseError) {
-        }
-        override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-        }
-        override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-        }
-        override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-            val fbuser = p0.getValue(Users::class.java)
-            val alreadyfriend:Boolean=fbuser?.uid in friendlist.map({item->item.frienduid})
-            val requestsend:Boolean=fbuser?.uid in CurrentUser!!.sent_requests?.map({item->item.frienduid})
-            if (fbuser != null && fbuser.uid!=CurrentUser?.uid && !alreadyfriend && !requestsend)
-            {
-                nonewrequest.visibility=View.GONE
-                pe.visibility=View.VISIBLE
-                pee.visibility=View.VISIBLE
-                MyAddChatList.visibility=View.VISIBLE
-                UserAdapter.add(fbuser)
-            }
-        }
-
-        override fun onChildRemoved(p0: DataSnapshot) {
-
-        }
-        private fun exitChat(){
-            auth.signOut()
-            startActivity(Intent(this,MainPage::class.java))
-            finish()
-        }
+    }
+    private fun exitChat(){
+        auth.signOut()
+        startActivity(Intent(this,MainPage::class.java))
+        finish()
+    }
 }
 

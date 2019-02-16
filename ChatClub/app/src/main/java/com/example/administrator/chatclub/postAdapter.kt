@@ -28,7 +28,7 @@ class PostListAdapter ( val data:ArrayList<post>,
     }
     override fun onBindViewHolder(p0: PostViewHolder, p1: Int) {
 
-        p0.bindItem(data[p1])
+        //p0.bindItem(data[p1])
 
         p0.sharebutton.setOnClickListener{
 

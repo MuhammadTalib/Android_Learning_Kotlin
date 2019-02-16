@@ -9,9 +9,9 @@ import android.widget.TextView
 class PostImageViewHolder(MyItem: View): PostViewHolder(MyItem)
 {
   val PostImage: ImageView = itemView.findViewById(R.id.postimage)
-
-  override fun bindItem(msgItem: com.example.administrator.chatclub.post){
+/*
+  override fun bindItem(msgItem:post){
     super.bindItem(msgItem)
     PostImage.setImageBitmap(Profile.MyImageBitmap as Bitmap)
-  }
+  }*/
 }

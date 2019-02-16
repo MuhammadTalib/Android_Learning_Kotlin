@@ -38,4 +38,8 @@ class ChatListAdapter ( val data:ArrayList<Users>,
         data.add(item)
         notifyItemInserted(data.size-1)
     }
+    fun addAll(item:ArrayList<Users>){
+        data.addAll(item)
+        notifyItemInserted(data.size-1)
+    }
 }
