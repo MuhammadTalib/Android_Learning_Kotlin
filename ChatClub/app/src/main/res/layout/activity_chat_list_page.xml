@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatListPage">
+    tools:context=".Activities.ChatListPage">
 
 
     <fragment
         android:id="@+id/chatclubtoolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:name="com.example.administrator.chatclub.ChatClubToolbar"
+        android:name="com.example.administrator.chatclub.Fragments.ChatClubToolbar"
         />
 
     <android.support.design.widget.TextInputLayout
