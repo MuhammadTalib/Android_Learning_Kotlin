@@ -23,8 +23,6 @@
                 android:background="@drawable/border_image"
                 android:layout_height="150dp" />
 
-
-
         <TextView
                 android:id="@+id/Job_CompanyName"
                 android:layout_width="wrap_content"

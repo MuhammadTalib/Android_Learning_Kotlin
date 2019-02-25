@@ -18,6 +18,7 @@
             android:textSize="50dp"
             android:textStyle="italic"
             android:textColor="#1885c4"
+
     />
     <View
         android:layout_marginTop="20dp"
@@ -53,6 +54,9 @@
             android:background="#d6d3d3"
             android:hint="Filter by title"
             android:textSize="20dp"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+
         />
 
         <EditText
@@ -66,6 +70,8 @@
                 android:background="#d6d3d3"
                 android:hint="Filter by city / state"
                 android:textSize="20dp"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
         />
 
 
