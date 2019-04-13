@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             overridePendingTransition(R.anim.slide_digonal,0)
         }
 
-
         contactslist.adapter=ContactsAdapter(ContactData,::OnClicked,::OnLongClicked)
         contactslist.layoutManager = LinearLayoutManager(this)
     }
