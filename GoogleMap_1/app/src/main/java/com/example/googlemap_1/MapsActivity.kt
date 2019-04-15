@@ -34,7 +34,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
     var ssuet = LatLng(24.915989, 67.093345)
     private val ALL_PERMISSIONS_RESULT = 101
     private val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10
-    private val MIN_TIME_BW_UPDATES = (1000 * 60).toLong()
+    private val MIN_TIME_BW_UPDATES = (1000 * 6).toLong()
 
 
     var locationManager: LocationManager? = null
@@ -92,9 +92,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
 
         //tvLatitude.text = loc.latitude.toString()
         //tvLongitude.text = loc.longitude.toString()
-       // tvTime.text = DateFormat.getTimeInstance().format(loc.time)
+        // tvTime.text = DateFormat.getTimeInstance().format(loc.time)
         Log.e(TAG,loc.latitude.toString()+" "+loc.longitude.toString())
-        ssuet= LatLng(loc.latitude,loc.longitude)
+        ssuet= LatLng(24.9707783,66.9903779)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
@@ -190,7 +190,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
             if (canGetLocation) {
                 Log.e(TAG, "Can get location")
                 if (isGPS) {
-                    // from GPS
                     Log.e(TAG, "GPS on")
                     locationManager?.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER,
@@ -201,22 +200,24 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
                     if (locationManager != null) {
                         loc = locationManager?.getLastKnownLocation(LocationManager.GPS_PROVIDER)
                         if (loc != null) {
+                            Log.e("GPS",loc?.latitude.toString()+"  "+loc?.longitude)
                             updateUI(loc!!)
                         }
                     }
                 } else if (isNetwork) {
+                    Log.e("GPS","Network on")
                     locationManager?.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
                         MIN_TIME_BW_UPDATES,
                         MIN_DISTANCE_CHANGE_FOR_UPDATES.toFloat(), this
                     )
-
                     if (locationManager != null) {
                         loc = locationManager?.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
                         if (loc != null)
                             updateUI(loc!!)
                     }
                 } else {
+                    Log.e("GPS","else")
                     loc?.setLatitude(0.0)
                     loc?.setLongitude(0.0)
                     updateUI(loc!!)
