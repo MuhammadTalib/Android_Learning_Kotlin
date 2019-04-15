@@ -46,7 +46,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
     var isNetwork = false
     var canGetLocation = true
 
-    private lateinit var mMap: GoogleMap
+    lateinit var mMap: GoogleMap
     lateinit var mylocation:Location
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +79,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
             getLocation()
 
         }
-
-
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
