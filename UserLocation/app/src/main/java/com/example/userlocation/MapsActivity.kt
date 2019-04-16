@@ -31,6 +31,7 @@ import android.location.LocationManager
 import android.util.Log
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.model.Marker
 
 
 @Suppress("DEPRECATION")
@@ -44,12 +45,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, com.google.android
     private var mLocationRequest: LocationRequest? = null
     private val UPDATE_INTERVAL = (2 * 1000).toLong()  /* 10 secs */
     private val FASTEST_INTERVAL: Long = 2000 /* 2 sec */
-
+    var marker: Marker?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
-        buildGoogleApiClient()
+        /*buildGoogleApiClient()
         try {
             Log.e("hahaha","aaa")
 
@@ -72,28 +73,32 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, com.google.android
                 }
             } else {
                 getLocation()
-            }
+            }*/
             val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
             mapFragment.getMapAsync(this)
-        }
 
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        marker=mMap.addMarker(MarkerOptions().position(MainActivity.LocationLatLang!!).title(""))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(MainActivity.LocationLatLang!!))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(MainActivity.LocationLatLang!!, 19.0f))
+
         mMap.setOnMapClickListener(GoogleMap.OnMapClickListener { point ->
+
+            marker?.remove()
             Toast.makeText(
                 this,
                 point.latitude.toString() + ", " + point.longitude,
                 Toast.LENGTH_SHORT
             ).show()
-            //loc=point
-            MainActivity.Location =point
-            mMap.addMarker(MarkerOptions().position(point).title(""))
+            MainActivity.LocationLatLang =point
+            marker=mMap.addMarker(MarkerOptions().position(point).title(""))
             mMap.moveCamera(CameraUpdateFactory.newLatLng(point))
             mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(point, 19.0f))
-            MainActivity.users?.add(users(MainActivity.Name).apply { this.location=point })
+            //MainActivity.users?.add(users(MainActivity.Name).apply { this.location=point })
             //startActivity(Intent(this,MainActivity::class.java))
         })
     }
@@ -154,7 +159,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, com.google.android
     private fun isLocationEnabled(): Boolean {
         Log.e("hahaha","is loc available")
         var locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        return locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager!!.isProviderEnabled(
+        return locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
             LocationManager.NETWORK_PROVIDER)
     }
     private fun checkLocationPermission() {
@@ -163,7 +168,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, com.google.android
                 AlertDialog.Builder(this)
                     .setTitle("Location Permission Needed")
                     .setMessage("This app needs the Location permission, please accept to use location functionality")
-                    .setPositiveButton("OK", DialogInterface.OnClickListener { dialog, which ->
+                    .setPositiveButton("OK", DialogInterface.OnClickListener {_, _ ->
                         ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), REQUEST_LOCATION_CODE)
                     })
                     .create()
@@ -204,20 +209,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, com.google.android
     }
 
     private fun startLocationUpdates() {
-        Log.e("hahaha","startLocationUpdates")
         mLocationRequest = LocationRequest.create()
             .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
             .setInterval(UPDATE_INTERVAL)
             .setFastestInterval(FASTEST_INTERVAL)
-        Log.e("hahaha","startLocationUpdates1")
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.e("hahaha","startLocationUpdates2")
             return
         }
-        Log.e("hahaha","startLocationUpdates3")
-        //mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-       LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this)
-        Log.e("hahaha","startLocationUpdates4")
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this)
     }
 
 

@@ -31,7 +31,7 @@ import java.util.ArrayList
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  {
 
     val TAG = "GPS"
-    var ssuet = LatLng(24.915989, 67.093345)
+    var ssuet = LatLng(0.00,0.0)
     private val ALL_PERMISSIONS_RESULT = 101
     private val MIN_DISTANCE_CHANGE_FOR_UPDATES: Long = 10
     private val MIN_TIME_BW_UPDATES = (1000 * 6).toLong()
@@ -92,7 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, LocationListener  
         //tvLongitude.text = loc.longitude.toString()
         // tvTime.text = DateFormat.getTimeInstance().format(loc.time)
         Log.e(TAG,loc.latitude.toString()+" "+loc.longitude.toString())
-        ssuet= LatLng(24.9707783,66.9903779)
+        ssuet= LatLng(loc.latitude,loc.longitude)
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
     }
