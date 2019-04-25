@@ -18,15 +18,15 @@ import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), LocationListener {
 
     companion object {
-        var users:ArrayList<users>?=null
+
         var LocationLatLang: LatLng?=null
+        lateinit var userlist:ArrayList<users>
     }
 
     val TAG = "GPS"
@@ -48,55 +48,72 @@ class MainActivity : AppCompatActivity(), LocationListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.e("hahaha","Oncreate")
+        userlist= arrayListOf()
+       // userlist[0].findaddress(this@MainActivity)
+        if(LocationLatLang!=null){
+            latitude.visibility= View.VISIBLE
+            latitudenum.visibility= View.VISIBLE
+            longitude.visibility= View.VISIBLE
+            longitudenum.visibility= View.VISIBLE
 
-
-
+            latitudenum.text=LocationLatLang?.latitude.toString()
+            longitudenum.text=LocationLatLang?.longitude.toString()
+        }
 
         open_map.setOnClickListener{
-            locationManager = getSystemService(Service.LOCATION_SERVICE) as LocationManager
-            isGPS = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
-            isNetwork = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            if(LocationLatLang==null){
+                locationManager = getSystemService(Service.LOCATION_SERVICE) as LocationManager
+                isGPS = locationManager!!.isProviderEnabled(LocationManager.GPS_PROVIDER)
+                isNetwork = locationManager!!.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 
-            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION)
-            permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
-            permissionsToRequest = findUnAskedPermissions(permissions)
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION)
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION)
+                permissionsToRequest = findUnAskedPermissions(permissions)
 
-            if (!isGPS && !isNetwork) {
-                Log.e(TAG, "Connection off")
-                showSettingsAlert()
-                getLastLocation()
-            } else {
-                Log.e(TAG, "Connection on")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (permissionsToRequest.size > 0) {
-                        requestPermissions(
-                            permissionsToRequest.toTypedArray(),
-                            ALL_PERMISSIONS_RESULT
-                        )
-                        Log.e(TAG, "Permission requests")
-                        canGetLocation = false
+                if (!isGPS && !isNetwork) {
+                    Log.e(TAG, "Connection off")
+                    showSettingsAlert()
+                    getLastLocation()
+                } else {
+                    Log.e(TAG, "Connection on")
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        if (permissionsToRequest.size > 0) {
+                            requestPermissions(
+                                permissionsToRequest.toTypedArray(),
+                                ALL_PERMISSIONS_RESULT
+                            )
+                            Log.e(TAG, "Permission requests")
+                            canGetLocation = false
+                        }
                     }
-                }
-                getLocation()
+                    getLocation()
 
+                }
             }
             startActivity(Intent(this, GoogleMap::class.java))
         }
 
         register.setOnClickListener {
-            var newuser=users().apply {
+            val newuser=users().apply {
             this.Name = name.text.toString()
             this.PhNumber=number.text.toString()
             this.location= LocationLatLang
+
             }
-            users?.add(newuser)
+            newuser.findaddress(this@MainActivity)
+            userlist.add(newuser)
             Toast.makeText(this, "User Registered", Toast.LENGTH_SHORT).show()
         }
-        showlist.setOnClickListener {
-            startActivity(Intent(this,ListOfUsers::class.java))
+        show_list.setOnClickListener {
+            Log.e("hahaha","button clicked")
+            Toast.makeText(this, "Button Clicked", Toast.LENGTH_SHORT).show()
+            for(user in userlist!!)
+            {
+                Log.e("hahaha",user.Name)
+            }
+            val i=Intent(this,userList::class.java)
+            startActivity(i)
         }
-
     }
     private fun updateUI(loc: Location) {
 

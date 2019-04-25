@@ -3,42 +3,136 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/item_back"
         android:layout_height="wrap_content">
+    <TextView
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:id="@+id/username1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textSize="18dp"
+    />
 
     <TextView
+            android:layout_toRightOf="@+id/username1"
+            android:textColor="#000"
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="name"
-            android:textSize="30dp"
+            android:textSize="18dp"
     />
     <TextView
+
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:id="@+id/usernumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:text="Number: "
+            android:textSize="18dp"
+    />
+    <TextView
+            android:textColor="#000"
+            android:layout_toRightOf="@+id/usernumber1"
             android:id="@+id/usernumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
             android:layout_below="@id/username"
             android:text="name"
-            android:textSize="24dp"
+            android:textSize="18dp"
     />
     <TextView
-            android:layout_marginTop="5dp"
-        android:id="@+id/userlatitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/usernumber"
-        android:text="name"
-        android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:id="@+id/userlatitude1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernumber"
+            android:text="Latitude: "
+            android:textSize="18dp"
+    />
+    <TextView
+            android:layout_toRightOf="@+id/userlatitude1"
+            android:textColor="#000"
+            android:id="@+id/userlatitude"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/usernumber"
+            android:text="name"
+            android:textSize="18dp"
     />
 
     <TextView
-            android:layout_marginTop="5dp"
-        android:id="@+id/userlongitude"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="name"
-        android:layout_below="@+id/userlatitude"
-        android:textSize="24dp"
-/>
+            android:id="@+id/userlongitude1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Longitude: "
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:layout_below="@+id/userlatitude"
+            android:textSize="18dp"
+    />
+
+    <TextView
+            android:layout_toRightOf="@+id/userlongitude1"
+            android:id="@+id/userlongitude"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_below="@+id/userlatitude"
+            android:textSize="18dp"
+    />
+    <TextView
+            android:id="@+id/useraddress1"
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Address: "
+            android:layout_below="@+id/userlongitude"
+            android:textSize="18dp"
+    />
+    <TextView
+            android:id="@+id/useraddress"
+            android:textColor="#000"
+            android:layout_toRightOf="@+id/useraddress1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_below="@+id/userlongitude"
+            android:textSize="18dp"
+    />
+    <TextView
+
+            android:id="@+id/useraddlink1"
+            android:textStyle="bold"
+            android:textColor="#116114"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Open In Map: "
+            android:layout_below="@+id/useraddress"
+            android:textSize="18dp"
+    />
+
+    <TextView
+            android:layout_toRightOf="@+id/useraddlink1"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:id="@+id/useraddlink"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="name"
+            android:layout_below="@+id/useraddress"
+            android:textSize="18dp"
+    />
 
 </RelativeLayout>

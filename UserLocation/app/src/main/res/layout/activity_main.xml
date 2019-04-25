@@ -4,18 +4,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#FFFFFF"
         tools:context=".MainActivity">
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
-          >
+    >
 
         <ImageView
                 android:id="@+id/logo"
-                android:layout_width="150dp"
+                android:layout_width="100dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="200dp"
+                android:layout_height="120dp"
                 android:src="@drawable/map_icon"
         />
 
@@ -25,34 +26,34 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="300dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/logo"
                 android:hint="User Name"
-                android:textSize="20dp"
+                android:textSize="18dp"
         />
 
         <EditText
                 android:id="@+id/number"
                 android:inputType="number"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="300dp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_below="@+id/name"
                 android:hint="Phone Number"
-                android:textSize="20dp"
+                android:textSize="18dp"
         />
         <TextView
-            android:id="@+id/latitude"
-            android:layout_below="@+id/number"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="60dp"
-            android:textSize="19dp"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Latitude:"
-            android:textColor="#040488"/>
+                android:id="@+id/latitude"
+                android:layout_below="@+id/number"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="60dp"
+                android:textSize="19dp"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitude:"
+                android:textColor="#040488"/>
         <TextView
                 android:id="@+id/latitudenum"
                 android:visibility="gone"
@@ -71,6 +72,7 @@
                 android:id="@+id/longitude"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="19dp"
                 android:text="Longitude:"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="60dp"
@@ -80,7 +82,7 @@
         <TextView
                 android:id="@+id/longitudenum"
                 android:visibility="gone"
-                android:layout_toRightOf="@+id/latitude"
+                android:layout_toRightOf="@+id/longitude"
                 android:layout_marginTop="8dp"
                 android:layout_marginLeft="10dp"
                 android:layout_alignBaseline="@+id/longitude"
@@ -106,7 +108,7 @@
         <Button
                 android:layout_marginTop="8dp"
                 android:layout_below="@+id/open_map"
-                android:background="#02A54C"
+                android:background="#0f7"
                 android:layout_width="wrap_content"
                 android:text="     Register     "
                 android:textSize="16dp"
@@ -119,16 +121,15 @@
         <Button
                 android:layout_marginTop="8dp"
                 android:layout_below="@+id/register"
-                android:background="#4CB67B"
+                android:background="#0f7"
                 android:layout_width="wrap_content"
                 android:text="     show list     "
                 android:textSize="16dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="center"
                 android:layout_height="50dp"
-                android:id="@+id/showlist"
+                android:id="@+id/show_list"
         />
-
 
 
     </RelativeLayout>

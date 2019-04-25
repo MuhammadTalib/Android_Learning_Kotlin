@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="8dp"
+        >
+    <TextView
+
+            android:id="@+id/countid"
+            android:paddingTop="10dp"
+            android:text="1->"
+            android:textStyle="bold"
+            android:textColor="#FFC107"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+    />
+    <RelativeLayout
+            android:padding="10dp"
+            android:layout_marginLeft="32dp"
+            android:background="@drawable/team_itemback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:id="@+id/name1"
+                android:text="Name: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/textview_fixed"
+
+        />
+        <TextView
+                android:id="@+id/fullname1"
+                android:text="FullName: "
+                android:layout_below="@+id/name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/textview_fixed"
+                android:layout_marginTop="3dp"
+        />
+        <TextView
+                android:id="@+id/devision1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Devision: "
+                android:layout_below="@+id/fullname1"
+                style="@style/textview_fixed"
+                android:layout_marginTop="3dp"
+        />
+        <TextView
+                android:id="@+id/city1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City: "
+                android:layout_below="@+id/devision1"
+                style="@style/textview_fixed"
+                android:layout_marginTop="3dp"
+        />
+        <TextView
+                android:id="@+id/conference1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Conference: "
+                android:layout_below="@+id/city1"
+                style="@style/textview_fixed"
+                android:layout_marginTop="3dp"
+        />
+        <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00BCD4"
+                android:textSize="18dp"
+                android:text="name"
+                android:layout_toRightOf="@+id/name1"
+        />
+        <TextView
+                android:id="@+id/fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00BCD4"
+                android:textSize="18dp"
+                android:text="name"
+                android:layout_toRightOf="@+id/fullname1"
+                android:layout_alignBaseline="@+id/fullname1"
+
+        /><TextView
+            android:id="@+id/devision"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00BCD4"
+            android:textSize="18dp"
+            android:text="devision"
+            android:layout_toRightOf="@+id/devision1"
+            android:layout_alignBaseline="@+id/devision1"
+    /><TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00BCD4"
+            android:textSize="18dp"
+            android:text="name"
+            android:layout_toRightOf="@+id/city1"
+            android:layout_alignBaseline="@+id/city1"
+    /><TextView
+            android:id="@+id/conference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#00BCD4"
+            android:textSize="18dp"
+            android:text="name"
+            android:layout_toRightOf="@+id/conference1"
+            android:layout_alignBaseline="@+id/conference1"
+    />
+    </RelativeLayout>
+
+</RelativeLayout>

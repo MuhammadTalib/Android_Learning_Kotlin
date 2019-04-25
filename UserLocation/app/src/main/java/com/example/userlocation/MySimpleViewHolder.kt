@@ -9,4 +9,6 @@ class MySimpleViewHolder(myItem: View) : RecyclerView.ViewHolder(myItem) {
     val mynumberTv : TextView = myItem.findViewById(R.id.usernumber)
     val mylatTv : TextView = myItem.findViewById(R.id.userlatitude)
     val mylongTv : TextView = myItem.findViewById(R.id.userlongitude)
+    val myaddress:TextView=myItem.findViewById(R.id.useraddress)
+    val myaddlink:TextView=myItem.findViewById(R.id.useraddlink)
 }
