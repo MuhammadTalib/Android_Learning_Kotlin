@@ -44,6 +44,5 @@ class MainActivity : AppCompatActivity() {
         override fun onReceive(context: Context?, intent: Intent?) {
             Toast.makeText(context,"Test Receiver From Activity ${intent?.getStringExtra("name")}",Toast.LENGTH_SHORT).show()
         }
-
     }
 }
